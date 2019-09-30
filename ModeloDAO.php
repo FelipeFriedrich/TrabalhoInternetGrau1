@@ -17,24 +17,23 @@
             return $modelo;
         }
 
-        public function deletar($id)
+        public function deletar($codigo)
         {
-            $qDeletar = "DELETE from modelo WHERE id=:id";            
+            $qDeletar = "DELETE from modelo WHERE codigo=:codigo";            
             $pdo = PDOFactory::getConexao();
             $comando = $pdo->prepare($qDeletar);
-            $comando->bindParam(":id",$id);
+            $comando->bindParam(":codigo",$codigo);
             $comando->execute();
         }
 
         public function atualizar(Modelo $modelo)
         {
-            $qAtualizar = "UPDATE modelo SET codigo=:codigo, descricao=:descricao, marca=:marca WHERE id=:id";            
+            $qAtualizar = "UPDATE modelo SET descricao=:descricao, marca=:marca WHERE codigo=:codigo";            
             $pdo = PDOFactory::getConexao();
             $comando = $pdo->prepare($qAtualizar);
             $comando->bindParam(":codigo",$modelo->codigo);
             $comando->bindParam(":descricao",$modelo->descricao);
             $comando->bindParam(":marca",$modelo->marca);
-            $comando->bindParam(":id",$modelo->id);
             $comando->execute();        
         }
 
@@ -46,20 +45,20 @@
     		$comando->execute();
             $modelos=array();	
 		    while($row = $comando->fetch(PDO::FETCH_OBJ)){
-			    $modelos[] = new Modelo($row->id,$row->codigo,$row->descricao,$row->marca);
+			    $modelos[] = new Modelo($row->codigo,$row->descricao,$row->marca);
             }
             return $modelos;
         }
 
-        public function buscarPorId($id)
+        public function buscarPorId($codigo)
         {
- 		    $query = 'SELECT * FROM modelo WHERE id=:id';		
+ 		    $query = 'SELECT * FROM modelo WHERE codigo=:codigo';		
             $pdo = PDOFactory::getConexao(); 
 		    $comando = $pdo->prepare($query);
-		    $comando->bindParam (':id', $id);
+		    $comando->bindParam (':codigo', $codigo);
 		    $comando->execute();
 		    $result = $comando->fetch(PDO::FETCH_OBJ);
-		    return new Modelo($row->id,$row->codigo,$row->descricao,$row->marca);          
+		    return new Modelo($row->codigo,$row->descricao,$row->marca);          
         }
     }
 ?>

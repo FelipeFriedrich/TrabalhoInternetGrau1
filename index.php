@@ -8,21 +8,27 @@ include_once('Modelo.php');
 include_once('ModeloDAO.php');
 include_once('Usuario.php');
 include_once('UsuarioDAO.php');
+include_once('Veiculo.php');
+include_once('VeiculoDAO.php');
+include_once('Nota_Fiscal.php');
+include_once('Nota_FiscalDAO.php');
 require __DIR__ . './vendor/autoload.php';
 
 $app = AppFactory::create();
 
-
+///////////////////////////////////////MODELOS////////////////////////////////
+//LISTA OS MODELOS//
 $app->get('/api/modelos', function (Request $request, Response $response, array $args) {
     $dao = new ModeloDao;  
     $modelos = $dao->listar();
     $response = $response->withJSON($modelos);
     return $response;
 });
+
+
 //Alterado para usar o ParsedBody
 //Teste com Postman adicionando um modelo no formato JSON
 $app->post('/api/modelos', function (Request $request, Response $response, array $args) {
-    //Adicione nome e preço no request (formato JSON)
     $dao = new ModeloDao;  
     $data = $request->getParsedBody();
     $codigo = $data['codigo'];
@@ -34,30 +40,91 @@ $app->post('/api/modelos', function (Request $request, Response $response, array
     return $response;
 });
 
-$app->get('/api/modelos/{id}', function (Request $request, Response $response, array $args) {
+$app->get('/api/modelos/{codigo}', function (Request $request, Response $response, array $args) {
     $dao = new modeloDAO;  
+    $modelo = $dao->buscarPorId($args['codigo']);
+    $response = $response->withJSON($modelo);
+    return $response;
+});
+
+$app->put('/api/modelos/{codigo}', function (Request $request, Response $response, array $args) {
+    $dao = new modeloDAO; 
+    $data = $request->getParsedBody();
+    $nome = $data['nome'];
+    $preco = $data['preco'];
+    $modelo = new modelo($args['codigo'], $nome, $preco);
+    $dao->atualizar($modelo);
+    $response->getBody()->write("Alterando modelo com codigo=".$args['codigo']);
+    return $response;
+});
+
+$app->delete('/api/modelos/{codigo}', function (Request $request, Response $response, array $args) {
+    $dao = new modeloDAO;
+    $dao->deletar($args['codigo']);	
+    $response->getBody()->write("Removendo modelo com codigo=".$args['codigo']);
+    return $response;
+});
+
+///////////////////////////////////////VEICULOS////////////////////////////////
+$app->get('/api/veiculos', function (Request $request, Response $response, array $args) {
+    $dao = new VeiculoDAO;  
+    $veiculos = $dao->listar();
+    $response = $response->withJSON($veiculos);
+    return $response;
+});
+
+
+//Alterado para usar o ParsedBody
+//Teste com Postman adicionando um modelo no formato JSON
+$app->post('/api/veiculos', function (Request $request, Response $response, array $args) {
+    $dao = new VeiculoDAO;  
+    $data = $request->getParsedBody();
+    $chassi = $data['chassi'];
+    $situacao = $data['situacao'];
+    $preco = $data['preco'];
+    $modelo = $data['modelo'];
+    $veiculo = new Veiculo(0, $chassi, $situacao, $preco, $modelo);
+    $veiculo = $dao->inserir($veiculo);
+    $response->getBody()->write("Veiculo de ".$chassi." inserido com sucesso!");
+    return $response;
+});
+
+$app->get('/api/veiculos/{id}', function (Request $request, Response $response, array $args) {
+    $dao = new VeiculoDAO;  
     $modelo = $dao->buscarPorId($args['id']);
     $response = $response->withJSON($modelo);
     return $response;
 });
 
-$app->put('/api/modelos/{id}', function (Request $request, Response $response, array $args) {
-    $dao = new modeloDAO; 
+$app->put('/api/veiculos/{id}', function (Request $request, Response $response, array $args) {
+    $dao = new VeiculoDAO; 
     $data = $request->getParsedBody();
-    $nome = $data['nome'];
+    $chassi = $data['chassi'];
+    $situacao = $data['situacao'];
     $preco = $data['preco'];
-    $modelo = new modelo($args['id'], $nome, $preco);
+    $modelo = $data['modelo'];
+    $modelo = new Veiculo($args['id'], $chassi, $situacao, $preco, $modelo);
     $dao->atualizar($modelo);
-    $response->getBody()->write("Alterando modelo com id=".$args['id']);
+    $response->getBody()->write("Alterando veiculo com id=".$args['id']);
     return $response;
 });
 
-$app->delete('/api/modelos/{id}', function (Request $request, Response $response, array $args) {
-    $dao = new modeloDAO;
+$app->delete('/api/veiculos/{id}', function (Request $request, Response $response, array $args) {
+    $dao = new VeiculoDAO;
     $dao->deletar($args['id']);	
-    $response->getBody()->write("Removendo modelo com id=".$args['id']);
+    $response->getBody()->write("Removendo veiculo com id=".$args['id']);
     return $response;
 });
+
+
+
+
+
+
+
+
+
+
 
 
 $app->post('/api/usuario', function (Request $request, Response $response, array $args) {

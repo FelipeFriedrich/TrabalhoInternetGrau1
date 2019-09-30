@@ -2,8 +2,7 @@ Create database Projeto;
 
 CREATE TABLE MODELO
 (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	codigo varchar(10) NOT NULL,
+	codigo varchar(10) PRIMARY KEY NOT NULL,
 	descricao VARCHAR(50) NOT NULL,
 	marca varchar(3) NOT NULL
 );
@@ -14,8 +13,8 @@ CREATE TABLE VEICULO
     chassi VARCHAR(17) NOT NULL,
 	situacao varchar(1) NOT NULL,
     preco FLOAT NOT NULL,
-	id_modelo int NOT NULL,
-	FOREIGN KEY (id_modelo) REFERENCES MODELO(id)
+	id_modelo varchar NOT NULL,
+	FOREIGN KEY (id_modelo) REFERENCES MODELO(codigo)
 );
 
 CREATE TABLE NOTA_FISCAL

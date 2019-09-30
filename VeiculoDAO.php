@@ -48,7 +48,7 @@
     		$comando->execute();
             $veiculos=array();	
 		    while($row = $comando->fetch(PDO::FETCH_OBJ)){
-			    $veiculos[] = new $veiculos[] = new veiculo($row->id,$row->chassi,$row->situacao,$row->preco, $row->id_modelo);
+			    $veiculos[] = new veiculo($row->id,$row->chassi,$row->situacao,$row->preco, $row->id_modelo);
             }
             return $veiculos;
         }
@@ -61,7 +61,7 @@
 		    $comando->bindParam (':id', $id);
 		    $comando->execute();
 		    $result = $comando->fetch(PDO::FETCH_OBJ);
-		    return new $veiculos[] = new veiculo($row->id,$row->chassi,$row->situacao,$row->preco, $row->id_modelo);         
+		    return new veiculo($row->id,$row->chassi,$row->situacao,$row->preco, $row->id_modelo);         
         }
     }
 ?>
