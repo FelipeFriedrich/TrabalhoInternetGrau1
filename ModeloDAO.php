@@ -2,22 +2,22 @@
     include_once 'modelo.php';
 	include_once 'PDOFactory.php';
 
-    class ProdutoDAO
+    class ModeloDAO
     {
-        public function inserirModelo(Modelo $modelo)
+        public function inserir(Modelo $modelo)
         {
             $qInserir = "INSERT INTO modelo(codigo,descricao,marca) VALUES (:codigo,:descricao,marca)";            
             $pdo = PDOFactory::getConexao();
             $comando = $pdo->prepare($qInserir);
-            $comando->bindParam(":codigo",$modelo->nome);
-            $comando->bindParam(":descricao",$modelo->preco);
-            $comando->bindParam(":marca",$modelo->preco);
+            $comando->bindParam(":codigo",$modelo->codigo);
+            $comando->bindParam(":descricao",$modelo->descricao);
+            $comando->bindParam(":marca",$modelo->marca);
             $comando->execute();
-            $produto->id = $pdo->lastInsertId();
-            return $produto;
+            $modelo->id = $pdo->lastInsertId();
+            return $modelo;
         }
 
-        public function deletarModelo($id)
+        public function deletar($id)
         {
             $qDeletar = "DELETE from modelo WHERE id=:id";            
             $pdo = PDOFactory::getConexao();
@@ -26,7 +26,7 @@
             $comando->execute();
         }
 
-        public function atualizarModelo(Modelo $modelo)
+        public function atualizar(Modelo $modelo)
         {
             $qAtualizar = "UPDATE modelo SET codigo=:codigo, descricao=:descricao, marca=:marca WHERE id=:id";            
             $pdo = PDOFactory::getConexao();
@@ -34,7 +34,7 @@
             $comando->bindParam(":codigo",$modelo->codigo);
             $comando->bindParam(":descricao",$modelo->descricao);
             $comando->bindParam(":marca",$modelo->marca);
-            $comando->bindParam(":id",$produto->id);
+            $comando->bindParam(":id",$modelo->id);
             $comando->execute();        
         }
 

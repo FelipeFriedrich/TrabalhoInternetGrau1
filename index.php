@@ -13,48 +13,49 @@ require __DIR__ . './vendor/autoload.php';
 $app = AppFactory::create();
 
 
-$app->get('/api/produtos', function (Request $request, Response $response, array $args) {
-    $dao = new ProdutoDAO;  
-    $produtos = $dao->listar();
-    $response = $response->withJSON($produtos);
+$app->get('/api/modelos', function (Request $request, Response $response, array $args) {
+    $dao = new ModeloDao;  
+    $modelos = $dao->listar();
+    $response = $response->withJSON($modelos);
     return $response;
 });
 //Alterado para usar o ParsedBody
-//Teste com Postman adicionando um produto no formato JSON
-$app->post('/api/produtos', function (Request $request, Response $response, array $args) {
+//Teste com Postman adicionando um modelo no formato JSON
+$app->post('/api/modelos', function (Request $request, Response $response, array $args) {
     //Adicione nome e preço no request (formato JSON)
-    $dao = new ProdutoDAO;  
+    $dao = new ModeloDao;  
+    $data = $request->getParsedBody();
+    $codigo = $data['codigo'];
+    $descricao = $data['descricao'];
+    $marca = $data['marca'];
+    $modelo = new Modelo(0, $codigo, $descricao, $marca);
+    $modelo = $dao->inserir($modelo);
+    $response->getBody()->write("Modelo ".$descricao." inserido com sucesso!");
+    return $response;
+});
+
+$app->get('/api/modelos/{id}', function (Request $request, Response $response, array $args) {
+    $dao = new modeloDAO;  
+    $modelo = $dao->buscarPorId($args['id']);
+    $response = $response->withJSON($modelo);
+    return $response;
+});
+
+$app->put('/api/modelos/{id}', function (Request $request, Response $response, array $args) {
+    $dao = new modeloDAO; 
     $data = $request->getParsedBody();
     $nome = $data['nome'];
     $preco = $data['preco'];
-    $produto = new Produto(0, $nome, $preco);
-    $produto = $dao->inserir($produto);
-    $response->getBody()->write("Produto ".$nome." inserido com o valor: ".$preco."");
+    $modelo = new modelo($args['id'], $nome, $preco);
+    $dao->atualizar($modelo);
+    $response->getBody()->write("Alterando modelo com id=".$args['id']);
     return $response;
 });
 
-$app->get('/api/produtos/{id}', function (Request $request, Response $response, array $args) {
-    $dao = new ProdutoDAO;  
-    $produto = $dao->buscarPorId($args['id']);
-    $response = $response->withJSON($produto);
-    return $response;
-});
-
-$app->put('/api/produtos/{id}', function (Request $request, Response $response, array $args) {
-    $dao = new ProdutoDAO; 
-    $data = $request->getParsedBody();
-    $nome = $data['nome'];
-    $preco = $data['preco'];
-    $produto = new Produto($args['id'], $nome, $preco);
-    $dao->atualizar($produto);
-    $response->getBody()->write("Alterando produto com id=".$args['id']);
-    return $response;
-});
-
-$app->delete('/api/produtos/{id}', function (Request $request, Response $response, array $args) {
-    $dao = new ProdutoDAO;
+$app->delete('/api/modelos/{id}', function (Request $request, Response $response, array $args) {
+    $dao = new modeloDAO;
     $dao->deletar($args['id']);	
-    $response->getBody()->write("Removendo produto com id=".$args['id']);
+    $response->getBody()->write("Removendo modelo com id=".$args['id']);
     return $response;
 });
 
