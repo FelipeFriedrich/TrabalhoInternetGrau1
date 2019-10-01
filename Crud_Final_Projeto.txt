@@ -1,0 +1,547 @@
+{
+	"info": {
+		"_postman_id": "74b6d34d-aa77-46ca-bed0-2e73a531d6be",
+		"name": "Crud_Projeto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Autenticacao /auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\":\"FELIPE\",\n\t\"senha\":\"FRIEDRICH\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar /modelos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/modelos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"modelos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar por codigo/Modelos/codigo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/modelos/5Z95E4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"modelos",
+						"5Z95E4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar  /modelos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"codigo\":\"6C8DA5\",\n\t\"descricao\":\"Amarok\",\n\t\"marca\":\"VW\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/modelos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"modelos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar /modelos/codigo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"descricao\":\"Amarok Confortline1\",\n\t\"marca\":\"VW\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/modelos/6C8DA5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"modelos",
+						"6C8DA5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar /modelos/codigo",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/modelos/6C8DA6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"modelos",
+						"6C8DA5"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar /veiculos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/veiculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"veiculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar por ID/veiculos/id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/veiculos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"veiculos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar  /veiculos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"chassi\":\"12345678901\",\n\t\"situacao\":\"V\",\n\t\"preco\":\"14000\",\n\t\"modelo\":\"B3LLY3\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/veiculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"veiculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar /veiculos/id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"chassi\":\"12345678902\",\n\t\"situacao\":\"V\",\n\t\"preco\":\"14000\",\n\t\"modelo\":\"B3LLY3\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/veiculos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"veiculos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar /veiculos/id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/veiculos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"veiculos",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar /notasFiscais",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/notasFiscais",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"notasFiscais"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar por ID/notasFiscais/id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/notasFiscais/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"notasFiscais",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar  /notasFiscaisCopy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"notaFiscal\":\"865412\",\n\t\"data\":\"18/07/2018\",\n\t\"veiculo\":2\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/notasFiscais",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"notasFiscais"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar /notasFiscais/id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"notaFiscal\":\"865422\",\n\t\"data\":\"17/08/2019\",\n\t\"veiculo\":2\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/notasFiscais/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"notasFiscais",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar /notasFiscais/id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMSIsIm5vbWUiOiJGRUxJUEUgRlJJRURSSUNIIFNBTlRPUyJ9.z8szqLgZFmWQtQiR3Y3lTzwdQIRFuvspRQXdmk7-d3M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/notasFiscais/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"notasFiscais",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

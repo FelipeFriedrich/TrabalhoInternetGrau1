@@ -1,10 +1,10 @@
 <?php
     class Modelo {
-        private $codigo;
-        private $descricao;
-        private $marca;
+        public $codigo;
+        public $descricao;
+        public $marca;
         
-        function __construct($codigo, $descricao,$marca ){
+        function __construct($codigo,$descricao,$marca){
         $this->codigo = $codigo;
         $this->descricao = $descricao;
         $this->marca = $marca;

@@ -1,10 +1,10 @@
 <?php
     class Veiculo {
-        private $id;
-        private $chassi;
-        private $situacao;
-        private $preco;
-        private $modelo;
+        public $id;
+        public $chassi;
+        public $situacao;
+        public $preco;
+        public $modelo;
         
         function __construct($id, $chassi, $situacao,$preco,$modelo ){
         $this->id = $id;

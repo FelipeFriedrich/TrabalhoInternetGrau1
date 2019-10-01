@@ -1,11 +1,11 @@
 <?php
     class NotaFiscal {
-        private $id;
-        private $notaFiscal;
-        private $data;
-        private $veiculo;
+        public $id;
+        public $notaFiscal;
+        public $data;
+        public $veiculo;
         
-        function __construct($id, $notaFiscal, $data,$veiculo){
+        function __construct($id,$veiculo,$data,$notaFiscal){
         $this->id = $id;
         $this->notaFiscal = $notaFiscal;
         $this->data = $data;

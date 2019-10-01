@@ -1,6 +1,8 @@
 <?php
     include_once 'veiculo.php';
-	include_once 'PDOFactory.php';
+    include_once 'PDOFactory.php';
+    include_once 'ModeloDAO.php';
+    include_once 'Modelo.php';
 
     class VeiculoDAO
     {
@@ -12,7 +14,7 @@
             $comando->bindParam(":chassi",$veiculo->chassi);
             $comando->bindParam(":situacao",$veiculo->situacao);
             $comando->bindParam(":preco",$veiculo->preco);
-            $comando->bindParam(":modelo",$veiculo->modelo);
+            $comando->bindParam(":modelo",$veiculo->modelo->codigo);
             $comando->execute();
             $veiculo->id = $pdo->lastInsertId();
             return $veiculo;
@@ -35,33 +37,37 @@
             $comando->bindParam(":chassi",$veiculo->chassi);
             $comando->bindParam(":situacao",$veiculo->situacao);
             $comando->bindParam(":preco",$veiculo->preco);
-            $comando->bindParam(":modelo",$veiculo->modelo);
+            $comando->bindParam(":modelo",$veiculo->modelo->codigo);
             $comando->bindParam(":id",$veiculo->id);
             $comando->execute();        
         }
 
         public function listar()
-        {
+        {   
+            $dao = new ModeloDAO;
 		    $query = 'SELECT * FROM veiculo';
     		$pdo = PDOFactory::getConexao();
 	    	$comando = $pdo->prepare($query);
     		$comando->execute();
             $veiculos=array();	
 		    while($row = $comando->fetch(PDO::FETCH_OBJ)){
-			    $veiculos[] = new veiculo($row->id,$row->chassi,$row->situacao,$row->preco, $row->id_modelo);
+                $modelo = $dao->Buscarporid($row->id_modelo);
+			    $veiculos[] = new veiculo($row->id,$row->chassi,$row->situacao,$row->preco,$modelo);
             }
             return $veiculos;
         }
 
         public function buscarPorId($id)
         {
+            $dao = new ModeloDAO;
  		    $query = 'SELECT * FROM veiculo WHERE id=:id';		
             $pdo = PDOFactory::getConexao(); 
 		    $comando = $pdo->prepare($query);
 		    $comando->bindParam (':id', $id);
 		    $comando->execute();
-		    $result = $comando->fetch(PDO::FETCH_OBJ);
-		    return new veiculo($row->id,$row->chassi,$row->situacao,$row->preco, $row->id_modelo);         
+            $result = $comando->fetch(PDO::FETCH_OBJ);
+            $modelo = $dao->Buscarporid($result->id_modelo);
+		    return new veiculo($result->id,$result->chassi,$result->situacao,$result->preco, $modelo);         
         }
     }
 ?>

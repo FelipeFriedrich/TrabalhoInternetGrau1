@@ -6,7 +6,7 @@
     {
         public function inserir(Modelo $modelo)
         {
-            $qInserir = "INSERT INTO modelo(codigo,descricao,marca) VALUES (:codigo,:descricao,marca)";            
+            $qInserir = "INSERT INTO modelo(codigo,descricao,marca) VALUES (:codigo,:descricao,:marca)";            
             $pdo = PDOFactory::getConexao();
             $comando = $pdo->prepare($qInserir);
             $comando->bindParam(":codigo",$modelo->codigo);
@@ -50,6 +50,7 @@
             return $modelos;
         }
 
+
         public function buscarPorId($codigo)
         {
  		    $query = 'SELECT * FROM modelo WHERE codigo=:codigo';		
@@ -58,7 +59,7 @@
 		    $comando->bindParam (':codigo', $codigo);
 		    $comando->execute();
 		    $result = $comando->fetch(PDO::FETCH_OBJ);
-		    return new Modelo($row->codigo,$row->descricao,$row->marca);          
+		    return new Modelo($result->codigo,$result->descricao,$result->marca);          
         }
     }
 ?>
