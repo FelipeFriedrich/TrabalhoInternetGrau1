@@ -22,8 +22,7 @@ class VeiculoController {
         $situacao = $data['situacao'];
         $preco = $data['preco'];
         $codigoModelo = $data['modelo'];
-        $modelo = $dao2->buscarPorId($codigoModelo);
-        $veiculo = new Veiculo(0, $chassi, $situacao, $preco, $modelo);
+        $veiculo = new Veiculo(0, $chassi, $situacao, $preco, $codigoModelo);
         $veiculo = $dao->inserir($veiculo);
         $response->getBody()->write("Veiculo de ".$chassi." inserido com sucesso!");
         return $response
@@ -45,8 +44,7 @@ class VeiculoController {
       $situacao = $data['situacao'];
       $preco = $data['preco'];
       $codigoModelo = $data['modelo'];
-      $modelo = $dao2->buscarPorId($codigoModelo);
-      $veiculo = new Veiculo($args['id'], $chassi, $situacao, $preco, $modelo);
+      $veiculo = new Veiculo($args['id'], $chassi, $situacao, $preco, $codigoModelo);
       $dao->atualizar($veiculo);
       $response->getBody()->write("Alterando veiculo com id=".$args['id']);
       return $response;

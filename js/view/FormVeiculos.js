@@ -1,4 +1,4 @@
-class FormProdutos {
+class FormVeiculos {
     constructor(controller, seletor){
         this.controller = controller;
         this.seletor = seletor;
@@ -20,29 +20,27 @@ class FormProdutos {
             <br />
             <label for="txtuso">Preço:</label>
             <input type="text" id="txtpreco" value="${veiculo.preco ?veiculo.preco :''}">
-            <br />` +
-            /* ----------------------- Modelo --------------------------------
-            <label for="txtuso">Preço:</label>
-            <input type="text" id="txtpreco" value="${produto.preco ?produto.preco :''}">
             <br />
-            */
-           `<br />
+            <label for="txtuso">Modelo:</label>
+            <input type="text" id="txtmodelo" value="${veiculo.modelo ?veiculo.modelo :''}">
+            <br />
+            <br />
             <input type="submit" id="btnsalvar" value="Salvar">
             <input type="reset" value="Cancelar">
             <br />
         </form>
         `;
         var containerForm = document.querySelector(this.seletor);
-        containerForm.innerHTML = str;
+        containerForm.innerHTML = str; 
 
         var form = document.querySelector("#formulario");
         const self = this;
         form.onsubmit = function(event){
-            if(!produto.id){
+            if(!veiculo.id){
                 self.controller.salvar(event);
             }
             else{
-                self.controller.editar(produto.id,event);
+                self.controller.editar(veiculo.id,event);
             }
             //this.controller.salvar.bind(this.controller,event);
         }        
@@ -56,15 +54,17 @@ class FormProdutos {
         document.querySelector("#txtchassi").value="";
         document.querySelector("#txtsituacao").value="";
         document.querySelector("#txtpreco").value="";
+        document.querySelector("#txtmodelo").value="";
     }
 
     getDataVeiculo(){
         let veiculo = new Veiculo();
-        if(!document.querySelector("#idVeiculo").value)
+        if(!document.querySelector("#id").value)
         veiculo.id = document.querySelector("#id").value;
         veiculo.chassi = document.querySelector("#txtchassi").value;
         veiculo.situacao = document.querySelector("#txtsituacao").value;
         veiculo.preco = document.querySelector("#txtpreco").value;
+        veiculo.modelo = document.querySelector("#txtmodelo").value;
         return veiculo;        
     }
 

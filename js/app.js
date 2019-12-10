@@ -1,7 +1,7 @@
-const produtoController = new ProdutoController();
+const veiculoController = new VeiculoController();
 
 var body = document.querySelector("body");
 body.onload = function () {
-    produtoController.carregarProdutos();
+    veiculoController.carregarVeiculos();
 }
 

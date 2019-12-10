@@ -14,7 +14,7 @@
             $comando->bindParam(":chassi",$veiculo->chassi);
             $comando->bindParam(":situacao",$veiculo->situacao);
             $comando->bindParam(":preco",$veiculo->preco);
-            $comando->bindParam(":modelo",$veiculo->modelo->codigo);
+            $comando->bindParam(":modelo",$veiculo->modelo);
             $comando->execute();
             $veiculo->id = $pdo->lastInsertId();
             return $veiculo;
@@ -37,7 +37,7 @@
             $comando->bindParam(":chassi",$veiculo->chassi);
             $comando->bindParam(":situacao",$veiculo->situacao);
             $comando->bindParam(":preco",$veiculo->preco);
-            $comando->bindParam(":modelo",$veiculo->modelo->codigo);
+            $comando->bindParam(":modelo",$veiculo->modelo);
             $comando->bindParam(":id",$veiculo->id);
             $comando->execute();        
         }
@@ -51,8 +51,7 @@
     		$comando->execute();
             $veiculos=array();	
 		    while($row = $comando->fetch(PDO::FETCH_OBJ)){
-                $modelo = $dao->Buscarporid($row->id_modelo);
-			    $veiculos[] = new veiculo($row->id,$row->chassi,$row->situacao,$row->preco,$modelo);
+                $veiculos[] = new veiculo($row->id,$row->chassi,$row->situacao,$row->preco,$row->id_modelo);
             }
             return $veiculos;
         }
@@ -66,8 +65,7 @@
 		    $comando->bindParam (':id', $id);
 		    $comando->execute();
             $result = $comando->fetch(PDO::FETCH_OBJ);
-            $modelo = $dao->Buscarporid($result->id_modelo);
-		    return new veiculo($result->id,$result->chassi,$result->situacao,$result->preco, $modelo);         
+            return new veiculo($result->id,$result->chassi,$result->situacao,$result->preco, $result->id_modelo);         
         }
     }
 ?>

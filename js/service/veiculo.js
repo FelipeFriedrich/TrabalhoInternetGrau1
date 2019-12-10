@@ -26,7 +26,7 @@ class VeiculoAPIService{
             //Se finalizou a comunicacao
             if(this.readyState === 4){
                     if (this.status === 201) {
-                    ok(JSON.parse(this.responseText));
+                    ok(this.responseText);
                 }
                 else{
                     erro(this.status);
@@ -43,7 +43,7 @@ class VeiculoAPIService{
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
-                ok(JSON.parse(this.responseText));          
+                ok(this.responseText);          
             }
             else if(this.status !== 200){
                 error(this.status);
@@ -71,7 +71,7 @@ class VeiculoAPIService{
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
-                ok(JSON.parse(this.responseText));          
+                ok(this.responseText);          
             }
             else if(this.status !== 200){
                 error(this.status);

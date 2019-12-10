@@ -22,7 +22,7 @@ $app->group('/api/modelos', function($app){
     $app->get('/{codigo}', 'ModeloController:buscarPorId');    
     $app->put('/{codigo}', 'ModeloController:atualizar');
     $app->delete('/{codigo}', 'ModeloController:deletar');
-})->add('UsuarioController:validarToken');
+});/*->add('UsuarioController:validarToken');*/
 
 
 $app->group('/api/veiculos', function($app){
@@ -32,7 +32,7 @@ $app->group('/api/veiculos', function($app){
     $app->get('/{id}', 'VeiculoController:buscarPorId');    
     $app->put('/{id}', 'VeiculoController:atualizar');
     $app->delete('/{id}', 'VeiculoController:deletar');
-})->add('UsuarioController:validarToken');
+});/*->add('UsuarioController:validarToken');*/
 
 
 $app->group('/api/notasFiscais', function($app){

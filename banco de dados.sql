@@ -13,8 +13,8 @@ CREATE TABLE VEICULO
     chassi VARCHAR(17) NOT NULL,
 	situacao varchar(1) NOT NULL,
     preco FLOAT NOT NULL,
-	id_modelo varchar(10) NOT NULL,
-	FOREIGN KEY (id_modelo) REFERENCES MODELO(codigo)
+	id_modelo varchar(10) NOT NULL/*,
+	FOREIGN KEY (id_modelo) REFERENCES MODELO(codigo)*/
 );
 
 CREATE TABLE NOTA_FISCAL
@@ -22,8 +22,8 @@ CREATE TABLE NOTA_FISCAL
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_veiculo INT NOT NULL,
 	data date NOT NULL,
-    nota_fiscal int NOT NULL,
-	FOREIGN KEY (id_veiculo) REFERENCES VEICULO(id)
+    nota_fiscal int NOT NULL/*,
+	FOREIGN KEY (id_veiculo) REFERENCES VEICULO(id)*/
 );
 
 CREATE TABLE USUARIO
